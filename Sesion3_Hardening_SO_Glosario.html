@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glosario previo · Sesión 3</title>
+<style>
+:root{
+  --bg:#f7f6f2; --card:#fff; --ink:#1d1d1b; --muted:#5f5e58; --line:#e3e1d8;
+  --accent:#0f6e5c; --accent-soft:#e3f2ee; --code:#f0eee7;
+  --c1:#1f4e8c; --c2:#6b4fa0; --c3:#a3312a; --c4:#8a5a00; --c5:#0f6e5c;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141413; --card:#1e1e1c; --ink:#ecebe6; --muted:#a8a69d; --line:#33322e;
+    --accent:#5cc7ad; --accent-soft:#1b302b; --code:#2a2926;
+    --c1:#8fb6ec; --c2:#bba3e6; --c3:#f08a82; --c4:#e2b45a; --c5:#5cc7ad;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141413; --card:#1e1e1c; --ink:#ecebe6; --muted:#a8a69d; --line:#33322e;
+  --accent:#5cc7ad; --accent-soft:#1b302b; --code:#2a2926;
+  --c1:#8fb6ec; --c2:#bba3e6; --c3:#f08a82; --c4:#e2b45a; --c5:#5cc7ad;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:920px;margin:0 auto;padding:0 16px}
+header{padding:40px 0 20px}
+.kicker{color:var(--accent);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:13px}
+h1{font-size:clamp(26px,4vw,36px);line-height:1.15;margin:6px 0 12px}
+.lead{color:var(--muted);margin:0;max-width:680px}
+.tools{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0}
+.tools .wrap{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+input[type=search]{flex:1 1 220px;min-width:0;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);font:inherit}
+.tools a{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:6px 12px;border-radius:999px;font-size:14px;text-decoration:none}
+.tools a:hover{border-color:var(--accent)}
+section{margin-top:36px}
+section h2{display:flex;align-items:center;gap:10px;font-size:21px;margin:0 0 12px}
+section h2 .dot{width:12px;height:12px;border-radius:3px;background:var(--col)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.term{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--col);border-radius:12px;padding:14px 16px}
+.term h3{margin:0 0 4px;font-size:16px}
+.term p{margin:0}
+.term .ex{margin-top:8px;font-size:14px;color:var(--muted)}
+.term .ex b{color:var(--ink);font-weight:600}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:var(--code);padding:1px 5px;border-radius:4px}
+.quiz{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.quiz ol{margin:0;padding-left:22px}
+.quiz li+li{margin-top:12px}
+.quiz details summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:14px;margin-top:4px}
+.quiz details p{margin:6px 0 0;padding:8px 12px;background:var(--accent-soft);border-radius:8px;font-size:15px}
+.empty{display:none;color:var(--muted);margin-top:20px}
+footer{color:var(--muted);font-size:13px;text-align:center;padding:48px 0}
+@media print{.tools{display:none}.term{break-inside:avoid}.quiz details{display:block}.quiz details p{display:block}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <div class="kicker">DCM604 · Seguridad DevSecOps en Plataformas Cloud · Sesión 3</div>
+  <h1>Glosario previo: hardening del SO invitado</h1>
+  
+</header>
+
+<div class="tools"><div class="wrap">
+  <input type="search" id="q" placeholder="Buscar un término…" aria-label="Buscar un término">
+  <a href="#linux">Linux</a><a href="#redes">Redes</a><a href="#seguridad">Seguridad</a><a href="#cripto">Cripto</a><a href="#nube">Nube</a><a href="#quiz">Autoevaluación</a>
+</div></div>
+
+<main class="wrap" id="main"></main>
+<p class="wrap empty" id="empty">No hay términos que coincidan con la búsqueda.</p>
+
+<div class="wrap">
+  <section id="quiz">
+    <h2><span class="dot" style="--col:var(--accent)"></span>Autoevaluación rápida</h2>
+    <div class="quiz">
+      <p style="margin-top:0">Si puedes responder estas cinco preguntas sin mirar el glosario, llegas preparado. Abre la respuesta solo después de intentarlo.</p>
+      <ol>
+        <li>Un servicio escucha en <code>0.0.0.0:3306</code>. ¿Quién puede conectarse a él?
+          <details><summary>Ver respuesta</summary><p>Cualquiera que llegue a la máquina por la red, por cualquiera de sus interfaces, incluida la externa, salvo que un firewall lo impida. Si escuchara en <code>127.0.0.1</code>, solo podría conectarse la propia máquina.</p></details></li>
+        <li>¿Por qué es más seguro entrar por SSH con una llave que con una contraseña?
+          <details><summary>Ver respuesta</summary><p>Una contraseña se puede adivinar por fuerza bruta, filtrar o reutilizar en otros sitios. La llave privada nunca sale de tu computador y es prácticamente imposible de adivinar.</p></details></li>
+        <li>Si ya hay un Security Group en la nube, ¿para qué sirve un firewall dentro de la VM?
+          <details><summary>Ver respuesta</summary><p>Es defensa en profundidad: una segunda capa por si el Security Group se configura mal, y un filtro para el tráfico entre máquinas de la misma red.</p></details></li>
+        <li>Un atacante entró como usuario normal. ¿Cómo se llama lo que intentará hacer después?
+          <details><summary>Ver respuesta</summary><p>Escalamiento de privilegios: intentar convertirse en root. También podría intentar movimiento lateral hacia otras máquinas de la red.</p></details></li>
+        <li>En una VM de AWS o Azure, ¿quién es responsable de actualizar el sistema operativo?
+          <details><summary>Ver respuesta</summary><p>Tú, el cliente. Según el modelo de responsabilidad compartida, el proveedor asegura el hardware y el hipervisor, y el SO invitado es responsabilidad de quien usa la VM.</p></details></li>
+      </ol>
+    </div>
+  </section>
+</div>
+
+<footer class="wrap">Diplomado Cloud Engineering y Arquitectura Multicloud · Sesión 3 · 06-oct-2026</footer>
+
+<script>
+const G = [
+ {id:"linux", name:"Linux básico", col:"--c1", t:[
+  ["Demonio (daemon)","Proceso que corre en segundo plano y ofrece un servicio.","<code>sshd</code>, <code>nginx</code>; se gestionan con <code>systemctl status nginx</code>"],
+  ["Paquete / gestor de paquetes","Software instalable y la herramienta que lo instala, quita y actualiza.","<code>apt install nginx</code> (Debian/Ubuntu), <code>dnf install nginx</code> (RHEL)"],
+  ["root y sudo","root es el superusuario; <code>sudo</code> permite ejecutar un comando como root dejando registro de quién lo hizo.","<code>sudo systemctl restart nginx</code>"],
+  ["Permisos rwx","Lectura, escritura y ejecución para el dueño, el grupo y el resto.","<code>-rwxr-xr--</code> en la salida de <code>ls -l</code>"],
+  ["Kernel","Núcleo del sistema operativo: maneja memoria, procesos, red y módulos (drivers).","<code>uname -r</code> muestra su versión"]]},
+ {id:"redes", name:"Redes", col:"--c2", t:[
+  ["Puerto","Número que identifica un servicio dentro de una IP.","22 SSH, 80 HTTP, 443 HTTPS, 3306 MySQL"],
+  ["TCP vs UDP","TCP establece una conexión antes de enviar datos; UDP envía sin conexión.","La web y SSH usan TCP; DNS usa sobre todo UDP"],
+  ["Handshake TCP","Los tres pasos para abrir una conexión: SYN, SYN-ACK, ACK.","Base para entender el ataque SYN flood"],
+  ["Escuchar en una IP","En qué dirección acepta conexiones un servicio.","<code>127.0.0.1</code> = solo la propia máquina; <code>0.0.0.0</code> = todas las interfaces"],
+  ["Interfaz de red","Tarjeta de red física o virtual; una VM puede tener varias.","<code>eth0</code>, <code>ens3</code>; se ven con <code>ip a</code>"],
+  ["IP forwarding","Reenviar paquetes de una red a otra, como hace un router.","Un servidor web no debería hacerlo"],
+  ["Spoofing","Falsificar la IP de origen de un paquete.","Fingir que el tráfico viene de la red interna"]]},
+ {id:"seguridad", name:"Seguridad", col:"--c3", t:[
+  ["Superficie de ataque","Todos los puntos por donde se puede atacar un sistema.","Puertos abiertos, servicios activos, librerías instaladas"],
+  ["Vulnerabilidad / CVE","Falla de seguridad; CVE es su identificador público.","CVE-2021-44228 (Log4Shell)"],
+  ["Mínimo privilegio","Dar solo los permisos estrictamente necesarios.","Un usuario que solo puede reiniciar su servicio, no todo el servidor"],
+  ["Defensa en profundidad","Varias capas de protección: si una falla, otra responde.","Firewall de la nube + firewall dentro de la VM"],
+  ["Fuerza bruta","Probar contraseñas de forma automatizada hasta acertar.","Bots que intentan entrar por SSH a cualquier IP pública"],
+  ["Escalamiento de privilegios","Pasar de usuario normal a root.","Abusar de un <code>sudo</code> mal configurado"],
+  ["Movimiento lateral (pivoteo)","Usar una máquina comprometida para atacar a otras de la red.","Desde el servidor web hacia la base de datos"],
+  ["DoS / DDoS","Dejar un servicio sin disponibilidad saturándolo.","Miles de conexiones falsas contra una API"],
+  ["Lista blanca vs lista negra","Permitir solo lo declarado vs bloquear solo lo conocido como malo.","Un firewall que solo deja pasar los puertos 22 y 443"]]},
+ {id:"cripto", name:"Criptografía y autenticación", col:"--c4", t:[
+  ["Par de llaves (pública/privada)","La pública se deja en el servidor; la privada nunca sale de tu computador.","<code>ssh-keygen -t ed25519</code> crea ambas"],
+  ["Firma digital","Prueba que algo no fue modificado y quién lo emitió.","<code>apt</code> verifica la firma GPG de cada paquete"],
+  ["Autenticación vs autorización","Quién eres vs qué puedes hacer.","Entrar por SSH con tu llave vs poder usar <code>sudo</code>"]]},
+ {id:"nube", name:"Nube (repaso de las sesiones 1 y 2)", col:"--c5", t:[
+  ["Responsabilidad compartida","En IaaS el proveedor asegura el hipervisor; tú aseguras el sistema operativo de la VM.","En EC2 o Azure VM, parchear Linux es tu tarea"],
+  ["Security Group / NSG / reglas VPC","Firewall de red del proveedor, que funciona fuera de la VM.","Security Group de AWS, NSG de Azure, firewall VPC de GCP"],
+  ["Hipervisor vs SO invitado","El hipervisor ejecuta las VMs; el SO invitado es el sistema que corre dentro de cada una.","Sesión 2: Proxmox. Sesión 3: Debian dentro de la VM"]]}
+];
+const main = document.getElementById("main");
+G.forEach(g=>{
+  const sec = document.createElement("section");
+  sec.id = g.id; sec.style.setProperty("--col", `var(${g.col})`);
+  sec.innerHTML = `<h2><span class="dot"></span>${g.name}</h2><div class="grid">${g.t.map(([n,d,e])=>
+    `<article class="term"><h3>${n}</h3><p>${d}</p><p class="ex"><b>Ejemplo:</b> ${e}</p></article>`).join("")}</div>`;
+  main.appendChild(sec);
+});
+const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+document.getElementById("q").addEventListener("input", e=>{
+  const v = norm(e.target.value.trim()); let any = false;
+  document.querySelectorAll("#main section").forEach(sec=>{
+    let shown = 0;
+    sec.querySelectorAll(".term").forEach(t=>{
+      const ok = !v || norm(t.textContent).includes(v);
+      t.style.display = ok ? "" : "none"; if(ok) shown++;
+    });
+    sec.style.display = shown ? "" : "none"; if(shown) any = true;
+  });
+  document.getElementById("empty").style.display = any ? "none" : "block";
+});
+</script>
+</body>
+</html>
